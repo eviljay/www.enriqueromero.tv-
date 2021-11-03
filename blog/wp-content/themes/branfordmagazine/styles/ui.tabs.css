@@ -1,0 +1,128 @@
+/* Caution! Ensure accessibility in print and other media types... */
+@media projection, screen { /* Use class for showing/hiding tab content, so that visibility can be better controlled in different media types... */
+    .ui-tabs-hide {
+        display: none;
+    }
+}
+
+/* Hide useless elements in print layouts... */
+@media print {
+    .ui-tabs-nav {
+        display: none;
+    }
+}
+
+/* Skin */
+#container-4 { /* the whole container with all elements of the tabbed section */
+margin: 20px 0 20px 0 ;
+}
+
+.ui-tabs-panel { /* the main content-section of the tabbed area NOT the tabs themselfes */
+	width:580px;
+    padding: 15px;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 2px solid #999;
+	border-bottom: 2px solid #999;
+	background: url(../images/backgrounds/bg_leadarticle.jpg) repeat-x #F7C888; /* declare background color for container to avoid distorted fonts in IE while fading */
+}
+
+.ui-tabs-panel .title { /* for the headlines in the tabbed section */
+	font:1.9em Georgia, "Times New Roman", Times, serif;
+	line-height:100%;
+	display:block;
+	padding-bottom:7px;
+	color: #333333;
+	text-transform:none;
+	letter-spacing:normal;
+
+}
+
+.ui-tabs-nav { /* the whole area of the tabs navigation above the tabbed-content */
+    list-style:none;
+    margin:0px;
+    padding:0px;
+}
+
+.ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+    display: block;
+    clear: both;
+    content: " ";
+}
+.ui-tabs-nav li {
+    float: left;
+    margin:0 1px 0 0;
+    min-width: 85px; /* be nice to Opera */
+}
+.ui-tabs-nav .ui-tabs {
+    display:block;
+    padding:5px;
+    background:#d4d4d4;
+	margin:1px 0 0 0; /* position: relative makes opacity fail for disabled tab in IE */
+	position: relative;
+    top:1px;
+    z-index:2;
+    color: #333;
+    font-weight:bold;
+    line-height:1.2;
+    text-align:center;
+    text-decoration:none;
+	border:1px solid #ccc;
+    white-space:nowrap; /* required in IE 6 */    
+    outline:0; /* prevent dotted border in Firefox */
+}
+
+
+.ui-tabs-nav .ui-tabs:hover { /* here´s to define the hover effect of the tabs */
+    background:#333;
+	color:#fff;
+}
+
+
+.ui-tabs-selected .ui-tabs { /* the effects of the currently selected tab */
+	background-color:#fff;
+    color:#333;
+	border-bottom:1px solid #fff;
+}
+
+.ui-tabs-nav .ui-tabs-selected .ui-tabs, 
+.ui-tabs-nav .ui-tabs a:hover, 
+.ui-tabs-nav .ui-tabs a:active {
+    background-position: 100% -150px;
+}
+
+.ui-tabs-nav .ui-tabs, 
+.ui-tabs-nav .ui-tabs-disabled .ui-tabs a:hover, 
+.ui-tabs-nav .ui-tabs-disabled .ui-tabs a:active {
+    background-position: 100% -100px;
+}
+
+.ui-tabs-nav .ui-tabs-selected .ui-tabs a:link, 
+.ui-tabs-nav .ui-tabs-selected .ui-tabs a:visited, 
+.ui-tabs-nav .ui-tabs-disabled .ui-tabs a:link, 
+.ui-tabs-nav .ui-tabs-disabled .ui-tabs a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+    cursor: text;
+}
+
+.ui-tabs-nav .ui-tabs a:hover, 
+.ui-tabs-nav .ui-tabs a:active,
+.ui-tabs-nav .ui-tabs-unselect .ui-tabs a:hover, 
+.ui-tabs-nav .ui-tabs-unselect .ui-tabs a:active { /* @ Opera, we need to be explicit again here now... */
+    cursor: pointer; 
+	background-color:#333;
+	color:#fff;
+}
+
+.ui-tabs-disabled {
+    opacity: .4;
+    filter: alpha(opacity=40);
+}
+
+/* Additional IE specific bug fixes... */
+* html .ui-tabs-nav { /* auto clear, @ IE 6 & IE 7 Quirks Mode */
+    display: inline-block;
+}
+*:first-child+html .ui-tabs-nav  { /* @ IE 7 Standards Mode - do not group selectors, otherwise IE 6 will ignore complete rule (because of the unknown + combinator)... */
+    display: inline-block;
+}
+
